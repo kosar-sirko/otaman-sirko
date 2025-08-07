@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kozak Family — Ваш магазин</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Ivan Sirko — Ваш магазин</title>
+<style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body, html { height: 100%; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; color: #fff; overflow-x: hidden; }
     body {
@@ -36,9 +37,29 @@
     }
     .btn-primary:hover { background-color: #f5c700; }
     .container { max-width: 1200px; margin: 0 auto 80px auto; padding: 0 20px; }
-    #categories ul { max-width: 600px; margin: 0 auto; font-size: 18px; line-height: 1.7; list-style: none; padding-left: 0; columns: 2; gap: 25px; cursor: pointer; }
-    #categories ul li { margin-bottom: 10px; user-select: none; cursor: pointer; transition: color 0.3s ease; }
-    #categories ul li:hover { color: #ffdb58; }
+    #categories ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      padding: 0;
+      list-style: none;
+      margin: 0 auto;
+      max-width: 1000px;
+    }
+    #categories ul li {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    #categories ul li:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #ffdb58;
+    }
     #reset-filter {
       background:#ffdb58; color:#222; border:none; padding:10px 25px;
       border-radius:8px; font-weight:700; cursor:pointer; transition: background-color 0.3s ease; user-select: none;
@@ -51,84 +72,296 @@
       nav ul { gap: 15px; }
       #categories ul { columns: 1; }
     }
-  </style>
+  
+.category-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  margin: 40px auto;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+.category-buttons button {
+  background-color: #ffdb58;
+  color: #222;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  text-align: center;
+}
+.category-buttons button:hover {
+  background-color: #f5c700;
+}
+
+
+@media (max-width: 768px) {
+  .category-buttons {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+    padding: 0 10px;
+  }
+
+  .category-buttons button {
+    font-size: 14px;
+    padding: 12px 10px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 20px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .banner {
+    padding: 20px;
+    align-items: center;
+  }
+
+  .btn-primary {
+    width: 100%;
+    text-align: center;
+  }
+
+  form button.btn-primary {
+    width: 100% !important;
+    padding: 14px 20px;
+  }
+}
+
+
+#category-list li {
+  background-size: cover !important;
+  background-position: center !important;
+  position: relative;
+  height: 130px;
+  color: #fff;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 15px;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+#category-list li:hover {
+  transform: scale(1.03);
+}
+
+#contact-buttons {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1002;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-button {
+  background-color: #ffdb58;
+  color: #000;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  transition: background-color 0.3s ease;
+}
+
+.contact-button:hover {
+  background-color: #f5c700;
+}
+
+</style>
+
+<style>
+/* === Scroll To Top === */
+#scrollTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  z-index: 1003;
+  background-color: #ffdb58;
+  color: #000;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: background-color 0.3s ease;
+}
+#scrollTopBtn:hover { background-color: #f5c700; }
+
+/* === Theme Toggle === */
+#themeToggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1003;
+  background-color: #ffdb58;
+  color: #000;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* === Light Mode === */
+body.light-mode {
+  background: #fff !important;
+  color: #111 !important;
+}
+body.light-mode * {
+  color: #111 !important;
+}
+body.light-mode header,
+body.light-mode footer {
+  background-color: #f5f5f5 !important;
+}
+body.light-mode .btn-primary {
+  background-color: #222 !important;
+  color: #fff !important;
+}
+
+/* === Promo Box === */
+#promo-box {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #ffdb58;
+  color: #000;
+  text-align: center;
+  padding: 10px;
+  font-weight: 700;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.3);
+  z-index: 999;
+}
+
+/* === Floating Cart Button === */
+#cart-button {
+  position: fixed !important;
+  bottom: 160px;
+  right: 20px;
+  background-color: #ffdb58;
+  color: #000;
+  padding: 10px 16px;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  z-index: 1003;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+
+<link rel="manifest" href="manifest.json">
 </head>
 <body>
-
 <header>
-  <div class="logo">Kozak Family</div>
-  <nav>
-    <ul>
-      <li><a href="#about">О нас</a></li>
-      <li><a href="#categories">Категории</a></li>
-      <li><a href="#shop">Магазин</a></li>
-      <li><a href="#products">Рекомендуемые</a></li>
-      <li><a href="#contact">Контакты</a></li>
-    </ul>
-  </nav>
+<div class="logo">Ivan Sirko</div>
+<nav>
+<ul>
+<li><a href="#about">Про нас</a></li>
+<li><a href="#categories">Категорії</a></li>
+<li><a href="#shop">Магазин</a></li>
+<li><a href="#products">Рекомендовані</a></li>
+<li><a href="#contact">Контакти</a></li>
+</ul>
+</nav>
 </header>
-
 <section class="banner">
-  <h1>Добро пожаловать в Kozak Family</h1>
-  <p>Лучшие товары с заботой о вашем здоровье и стиле</p>
-  <button class="btn-primary" onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'})">Перейти к категориям</button>
+<h1>Ласкаво просимо до Ivan Sirko</h1>
+<p>Найкращі товари з турботою про ваше здоровʼя та стиль</p>
+<button class="btn-primary" onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'})">Перейти до категорій</button>
 </section>
-
-<section id="about" class="container" style="margin-bottom: 60px; color: #fff;">
-  <h2 style="text-align:center; font-weight:700; font-size:32px; color:#ffdb58; margin-bottom: 25px;">О нас</h2>
-  <p style="max-width: 800px; margin: 0 auto; font-size: 18px; line-height: 1.6; text-align: center;">
-    Наша опытная команда уже более 10 лет занимается изучением и реализацией медицинского канабиса.
-    Мы являемся партнёрами ведущих европейских компаний и лабораторий.
-    Сотрудничая с нами вы получаете продукты премиум-класса для личного использования и вашего бизнеса.
+<section class="container" id="about" style="margin-bottom: 60px; color: #fff;">
+<h2 style="text-align:center; font-weight:700; font-size:32px; color:#ffdb58; margin-bottom: 25px;">Про нас</h2>
+<p style="max-width: 800px; margin: 0 auto; font-size: 18px; line-height: 1.6; text-align: center;">
+    Наша досвідчена команда понад 10 років займається вивченням і реалізацією медичного канабісу.
+    Ми є партнерами провідних європейських компаній і лабораторій.
+    Співпрацюючи з нами, ви отримуєте продукцію преміум-класу для особистого використання та вашого бізнесу.
   </p>
 </section>
-
-<section id="categories" class="container" style="margin-bottom: 60px; color: #fff;">
-  <h2 style="text-align:center; font-weight:700; font-size:32px; color:#ffdb58; margin-bottom: 25px;">КАТЕГОРІЇ ТОВАРІВ</h2>
-  <ul id="category-list">
-    <li data-category="510 аккумуляторы">510 акумулятори</li>
-    <li data-category="510 картридж">510 картридж</li>
-    <li data-category="CBD Канабідіол">CBD (КБД) Канабідіол</li>
-    <li data-category="CBD CRUD Kozak Family">CBD CRUD Kozak Family(Нафта)</li>
-    <li data-category="CBD для тіла">CBD для тіла</li>
-    <li data-category="CBD желейки">CBD желейки</li>
-    <li data-category="CBD Напої">CBD Напої</li>
-    <li data-category="CBD Олія">CBD Олія</li>
-    <li data-category="CBD олія Kozak Family PREMIUM">CBD олія Kozak Family PREMIUM</li>
-    <li data-category="CBD олія для тварин">CBD олія для тварин</li>
-    <li data-category="CBD Цукерки">CBD Цукерки</li>
-    <li data-category="CBD+CBG Олія">CBD+CBG Олія</li>
-    <li data-category="CBN">CBN</li>
-    <li data-category="CRD">CRD</li>
-    <li data-category="H4CBD">H4CBD</li>
-    <li data-category="Взуття із конопель">Взуття із конопель</li>
-    <li data-category="Гроубоксы">Гроубоксы</li>
-    <li data-category="Конопляний текстиль">Конопляний текстиль</li>
-    <li data-category="Косметика з конопель">Косметика з конопель</li>
-    <li data-category="Мікродозінг">Мікродозінг</li>
-    <li data-category="Одяг з конопель">Одяг з конопель</li>
-    <li data-category="семена Datch Passion">семена Datch Passion</li>
-    <li data-category="семена Fast Buds">семена Fast Buds</li>
-    <li data-category="Семена seed stockers">Семена seed stockers</li>
-  </ul>
-  <div style="text-align:center; margin-top: 20px;">
-    <button id="reset-filter">Показать все товары</button>
-  </div>
+<div class="category-buttons">
+<button onclick="filterCategory('CBD Олія')">CBD Олія</button>
+<button onclick="filterCategory('Мікродозінг')">Мікродозинг</button>
+<button onclick="filterCategory('Одяг з конопель')">Одяг з конопель</button>
+<button onclick="filterCategory('Взуття із конопель')">Взуття із конопель</button>
+<button onclick="filterCategory('Конопляний текстиль')">Конопляний текстиль</button>
+<button onclick="filterCategory('Косметика з конопель')">Косметика з конопель</button>
+<button onclick="alert('Наш лікар звʼяжеться з вами найближчим часом.')">Безкоштовна консультація лікаря</button>
+</div>
+<section class="container" id="categories" style="margin-bottom: 60px; color: #fff;">
+<h2 style="text-align:center; font-weight:700; font-size:36px; color:#ffdb58; margin-bottom: 35px; text-transform:uppercase; letter-spacing: 2px;">Категорії товарів</h2>
+<ul id="category-list">
+<li data-category="510 аккумуляторы">510 акумулятори</li>
+<li data-category="510 картридж" style="background-image: url('https://kozak-family.com.ua/wp-content/uploads/2024/12/510-cartridge_05-600x600-1.png');">510 картридж</li>
+<li data-category="CBD Канабідіол" style="background-image: url('https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQq6ylzLjaTpjS2sc8ja9schJwMcr9zCCrf2Fcc32ITcc6VpqT6CCy8xbkED-OyPMkd1LPr_V5u');">CBD (КБД) Канабідіол</li>
+<li data-category="CBD CRUD Ivan Sirko" style="background-image: url('https://kozak-family.com.ua/wp-content/uploads/2025/01/yzobrazhenye_viber_2025-03-21_10-05-21-518-300x300.jpg');">CBD CRUD Ivan Sirko(Нафта)</li>
+<li data-category="CBD для тіла" style="background-image: url('https://kozak-family.com.ua/wp-content/uploads/2024/12/cbd-balzam-dlia-hub-6ml-60mh-le-kku-91868971811872-300x300.webp');">CBD для тіла</li>
+<li data-category="CBD желейки" style="background-image: url('https://kozak-family.com.ua/wp-content/uploads/2024/12/88162209545563-600x600.webp');">CBD желейки</li>
+<li data-category="CBD Напої" style="background-image: url('https://www.integralist.club/cdn/shop/files/Frame20237-min.jpg?v=1744976059&amp;width=1346');">CBD Напої</li>
+<li data-category="CBD Олія" style="background-image: url('https://kozak-family.com.ua/wp-content/uploads/2024/12/53263055797375-600x600.webp');">CBD Олія</li>
+<li data-category="CBD олія Ivan Sirko PREMIUM" style="background-image: url('https://kozak-family.com.ua/wp-content/uploads/2024/12/53263055797375-600x600.webp');">CBD олія Ivan Sirko PREMIUM</li>
+<li data-category="CBD олія для тварин" style="background-image: url('https://kozak-family.com.ua/wp-content/uploads/2024/12/46496345729543-300x300.webp');">CBD олія для тварин</li>
+<li data-category="CBD Цукерки" style="background-image: url('https://kozak-family.com.ua/wp-content/uploads/2024/12/cbd-mix-box-nabir-tsukerok-500mg-cbd-69648747132784-600x600.webp');">CBD Цукерки</li>
+<li data-category="CBD+CBG Олія" style="background-image: url('https://kozak-family.com.ua/wp-content/uploads/2024/12/maslo-cbdcbg-oil-20-30-ml-15988979433817-600x600.webp');">CBD+CBG Олія</li>
+<li data-category="CBN" style="background-image: url('https://kozak-family.com.ua/wp-content/uploads/2025/01/cbn-vejp.jpg');">CBN</li>
+<li data-category="CRD">CRD</li>
+<li data-category="H4CBD" style="background-image: url('https://kozak-family.com.ua/wp-content/uploads/2025/01/yzobrazhenye_viber_2025-01-13_11-50-41-868-300x300.jpg');">H4CBD</li>
+<li data-category="Взуття із конопель" style="background-image: url('https://kozak-family.com.ua/wp-content/uploads/2024/12/konopliane-khudi-zhinoche-molochne-25872599519606.webp');">Взуття із конопель</li>
+<li data-category="Гроубоксы" style="background-image: url('https://kozak-family.com.ua/wp-content/uploads/2025/01/grouboks.jpg');">Гроубоксы</li>
+<li data-category="Конопляний текстиль" style="background-image: url('https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQiiZ8wfeR79Tw8BnBsWv1chADYc8fI3aGdU2bQSrT8gj8AM6roRhOk6Qp-Aw');">Конопляний текстиль</li>
+<li data-category="Косметика з конопель" style="background-image: url('https://kozak-family.com.ua/wp-content/uploads/2025/05/2.jpg');">Косметика з конопель</li>
+<li data-category="Мікродозінг" style="background-image: url('https://kozak-family.com.ua/wp-content/uploads/2024/12/blend-mukhomora-amanita-muscariapantherina-140-kapsul-34695126667773-600x600.webp');">Мікродозінг</li>
+<li data-category="Одяг з конопель" style="background-image: url('https://kozak-family.com.ua/wp-content/uploads/2024/12/konopliane-khudi-zhinoche-molochne-25872599519606-600x600.webp');">Одяг з конопель</li>
+<li data-category="семена Datch Passion" style="background-image: url('https://kozak-family.com.ua/wp-content/uploads/2025/03/auto-banana-blaze-1-600x600.webp');">семена Datch Passion</li>
+<li data-category="семена Fast Buds" style="background-image: url('https://kozak-family.com.ua/wp-content/uploads/2025/03/04714734911507658984d10093e46512-300x300.jpeg');">семена Fast Buds</li>
+<li data-category="Семена seed stockers" style="background-image: url('https://kozak-family.com.ua/wp-content/uploads/2025/03/1-2.jpg');">Семена seed stockers</li>
+</ul>
+<div style="text-align:center; margin-top: 20px;">
+<button id="reset-filter">Показати всі товари</button>
+</div>
 </section>
-<section id="shop" class="container" style="margin-bottom: 80px; color:#fff;">
-  <h2 style="text-align:center; font-weight:700; font-size:32px; color:#ffdb58; margin-bottom: 25px;">Магазин</h2>
-
-  <!-- Контейнер товаров -->
-  <div id="shop-products" style="display:grid; grid-template-columns: repeat(auto-fill,minmax(250px,1fr)); gap:25px; margin-bottom:30px;">
-    <!-- Карточки товаров будут добавляться динамически через JS -->
-  </div>
-
-  <!-- Пагинация -->
-  <div id="pagination" style="text-align:center; margin-top:30px;">
-    <!-- Кнопки страниц будут добавляться JS -->
-  </div>
+<section class="container" id="shop" style="margin-bottom: 80px; color:#fff;">
+<h2 style="text-align:center; font-weight:700; font-size:32px; color:#ffdb58; margin-bottom: 25px;">Магазин</h2>
+<!-- Контейнер товаров -->
+<div id="shop-products" style="display:grid; grid-template-columns: repeat(auto-fill,minmax(250px,1fr)); gap:25px; margin-bottom:30px;">
+<!-- Карточки товаров будут добавляться динамически через JS -->
+</div>
+<!-- Пагинация -->
+<div id="pagination" style="text-align:center; margin-top:30px;">
+<!-- Кнопки страниц будут добавляться JS -->
+</div>
 </section>
-
 <script>
   // ==== Список товаров (название, цена, изображение, категория) ====
   const allProducts = [
@@ -145,7 +378,7 @@
     {name:"Мікродозінг", price: 299, img:"https://kozak-family.com.ua/wp-content/uploads/2023/02/microdosing-600x600.jpg", category:"Мікродозінг"},
     {name:"Футболка Kozak", price: 499, img:"https://kozak-family.com.ua/wp-content/uploads/2022/05/t-shirt-600x600.jpg", category:"Одяг з конопель"},
     {name:"Натуральная косметика", price: 799, img:"https://kozak-family.com.ua/wp-content/uploads/2022/05/cosmetic-600x600.jpg", category:"Косметика з конопель"},
-    {name:"CBD Олія Kozak Family PREMIUM", price: 1999, img:"https://kozak-family.com.ua/wp-content/uploads/2022/05/cbd-premium-600x600.jpg", category:"CBD олія Kozak Family PREMIUM"},
+    {name:"CBD Олія Ivan Sirko PREMIUM", price: 1999, img:"https://kozak-family.com.ua/wp-content/uploads/2022/05/cbd-premium-600x600.jpg", category:"CBD олія Ivan Sirko PREMIUM"},
     {name:"CBD+CBG Олія", price: 1599, img:"https://kozak-family.com.ua/wp-content/uploads/2022/05/cbd-cbg-600x600.jpg", category:"CBD+CBG Олія"},
     {name:"CBN Олія", price: 1799, img:"https://kozak-family.com.ua/wp-content/uploads/2022/05/cbn-oil-600x600.jpg", category:"CBN"},
     {name:"CRD Олія", price: 1699, img:"https://kozak-family.com.ua/wp-content/uploads/2022/05/crd-oil-600x600.jpg", category:"CRD"},
@@ -175,7 +408,7 @@
         <img src="${product.img}" alt="${product.name}" style="width:100%;border-radius:8px; margin-bottom:15px;">
         <h3 style="margin-bottom:10px;font-size:18px;">${product.name}</h3>
         <p style="margin-bottom:10px;font-size:16px;font-weight:700;">${product.price} грн</p>
-        <button class="btn-primary" style="padding:10px 20px;font-size:16px;" onclick="addToCart('${product.name}')">В корзину</button>
+        <button class="btn-primary" style="padding:10px 20px;font-size:16px;" onclick="addToCart('${product.name}')">До кошика</button>
       `;
       container.appendChild(card);
     });
@@ -210,31 +443,35 @@
     displayProducts();
     setupPagination();
   });
+
+function filterCategory(category) {
+  const cards = document.querySelectorAll('#shop-products .product-card');
+  cards.forEach(card => {
+    card.style.display = (card.dataset.category === category) ? '' : 'none';
+  });
+}
+
 </script>
-<section id="contact" class="container" style="margin-bottom: 80px;">
-  <h2 style="text-align:center; font-weight:700; font-size:32px; color:#ffdb58; margin-bottom: 25px;">Контакты</h2>
-  <form onsubmit="submitForm(event)" style="max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; color:#fff;">
-    <input type="text" name="name" placeholder="Ваше имя" required style="padding: 12px; border-radius: 8px; border: none; font-size: 16px;" />
-    <input type="email" name="email" placeholder="Ваш email" required style="padding: 12px; border-radius: 8px; border: none; font-size: 16px;" />
-    <textarea name="message" placeholder="Сообщение" rows="5" required style="padding: 12px; border-radius: 8px; border: none; font-size: 16px;"></textarea>
-    <button type="submit" class="btn-primary" style="align-self: center; width: 140px;">Отправить</button>
-  </form>
+<section class="container" id="contact" style="margin-bottom: 80px;">
+<h2 style="text-align:center; font-weight:700; font-size:32px; color:#ffdb58; margin-bottom: 25px;">Контакти</h2>
+<form onsubmit="submitForm(event)" style="max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; color:#fff;">
+<input name="name" placeholder="Ваше імʼя" required="" style="padding: 12px; border-radius: 8px; border: none; font-size: 16px;" type="text"/>
+<input name="email" placeholder="Ваш email" required="" style="padding: 12px; border-radius: 8px; border: none; font-size: 16px;" type="email"/>
+<textarea name="message" placeholder="Повідомлення" required="" rows="5" style="padding: 12px; border-radius: 8px; border: none; font-size: 16px;"></textarea>
+<button class="btn-primary" style="align-self: center; width: 140px;" type="submit">Надіслати</button>
+</form>
 </section>
-
 <button id="cart-button" onclick="toggleCart()">🛒 <span id="cart-count">0</span></button>
-
 <div id="cart" style="display:none; position:fixed; top:80px; right:20px; background:#222; padding:20px; border-radius:12px; box-shadow:0 2px 10px rgba(0,0,0,0.6); width:300px; z-index:1001;">
-  <h3 style="margin-bottom:15px;">Корзина</h3>
-  <ul id="cart-items" style="list-style:none; margin-bottom:20px;"></ul>
-  <div id="cart-total" style="margin-bottom:15px; font-weight:700;">Итого: 0 грн</div>
-  <button id="checkout-btn" onclick="checkout()" class="btn-primary" style="width:100%; margin-bottom:10px;">Оформить заказ</button>
-  <button id="close-cart-btn" onclick="toggleCart()" class="btn-primary" style="width:100%; background:#ccc; color:#000;">Закрыть</button>
+<h3 style="margin-bottom:15px;">Кошик</h3>
+<ul id="cart-items" style="list-style:none; margin-bottom:20px;"></ul>
+<div id="cart-total" style="margin-bottom:15px; font-weight:700;">Разом: 0 грн</div>
+<button class="btn-primary" id="checkout-btn" onclick="checkout()" style="width:100%; margin-bottom:10px;">Оформити замовлення</button>
+<button class="btn-primary" id="close-cart-btn" onclick="toggleCart()" style="width:100%; background:#ccc; color:#000;">Закрити</button>
 </div>
-
 <footer style="text-align:center; padding:20px; background:rgba(0,0,0,0.5); margin-top:60px;">
-  © 2025 Kozak Family. Все права защищены.
+  © 2025 Ivan Sirko. Всі права захищені.
 </footer>
-
 <script>
   const cartKey = 'kozakFamilyCart';
 
@@ -257,9 +494,9 @@
     let totalPrice = 0;
 
     if (Object.keys(cart).length === 0) {
-      cartItemsElem.innerHTML = '<li>Корзина пуста</li>';
+      cartItemsElem.innerHTML = '<li>Кошик пуста</li>';
       cartCountElem.textContent = '0';
-      cartTotalElem.textContent = 'Итого: 0 грн';
+      cartTotalElem.textContent = 'Разом: 0 грн';
       return;
     }
 
@@ -277,7 +514,7 @@
     }
 
     cartCountElem.textContent = totalCount;
-    cartTotalElem.textContent = \`Итого: \${totalPrice} грн\`;
+    cartTotalElem.textContent = \`Разом: \${totalPrice} грн\`;
   }
 
   function addToCart(productName) {
@@ -315,17 +552,17 @@
   function checkout() {
     const cart = getCart();
     if (Object.keys(cart).length === 0) {
-      alert('Ваша корзина пуста.');
+      alert('Ваш кошик порожній.');
       return;
     }
 
-    let summary = 'Ваш заказ:\\n';
+    let summary = 'Ваше замовлення:\\n';
     let total = 0;
     for (const [name, item] of Object.entries(cart)) {
       summary += \`\${name} x\${item.quantity} - \${item.price * item.quantity} грн\\n\`;
       total += item.price * item.quantity;
     }
-    summary += \`Итого: \${total} грн\\n\\nСпасибо за заказ! Мы свяжемся с вами для подтверждения.\`;
+    summary += \`Разом: \${total} грн\\n\\nДякуємо за замовлення! Ми звʼяжемося з вами для підтвердження.\`;
 
     alert(summary);
     localStorage.removeItem(cartKey);
@@ -335,7 +572,7 @@
 
   function submitForm(event) {
     event.preventDefault();
-    alert('Спасибо за ваше сообщение! Мы свяжемся с вами в ближайшее время.');
+    alert('Дякуємо за ваше повідомлення! Ми звʼяжемося з вами найближчим часом.');
     event.target.reset();
   }
 
@@ -368,6 +605,129 @@
       });
     });
   });
+
+function filterCategory(category) {
+  const cards = document.querySelectorAll('#shop-products .product-card');
+  cards.forEach(card => {
+    card.style.display = (card.dataset.category === category) ? '' : 'none';
+  });
+}
+
+</script>
+
+<div id="contact-buttons">
+  <a class="contact-button" href="https://t.me/Pr0st0_Boginia" target="_blank">💬 Telegram</a>
+  <a class="contact-button" href="https://www.facebook.com/profile.php?id=61579242658013" target="_blank">📘 Facebook</a>
+  <a class="contact-button" href="https://www.instagram.com/ivan_sirko_ottaman/" target="_blank">📸 Instagram</a>
+  <a class="contact-button" href="mailto:tanyagirlpretty@gmail.com">✉️ Email</a>
+</div>
+
+
+<div id="contact-buttons" style="
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1002;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+">
+  <a class="contact-button" href="https://t.me/Pr0st0_Boginia" target="_blank" style="
+    background-color: #ffdb58;
+    color: #000;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    transition: background-color 0.3s ease;
+  ">💬 Telegram</a>
+  <a class="contact-button" href="https://www.facebook.com/profile.php?id=61579242658013" target="_blank" style="
+    background-color: #ffdb58;
+    color: #000;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    transition: background-color 0.3s ease;
+  ">📘 Facebook</a>
+  <a class="contact-button" href="https://www.instagram.com/ivan_sirko_ottaman/" target="_blank" style="
+    background-color: #ffdb58;
+    color: #000;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    transition: background-color 0.3s ease;
+  ">📸 Instagram</a>
+  <a class="contact-button" href="mailto:tanyagirlpretty@gmail.com" style="
+    background-color: #ffdb58;
+    color: #000;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    transition: background-color 0.3s ease;
+  ">✉️ Email</a>
+</div>
+
+
+<button id="scrollTopBtn" onclick="scrollToTop()">↑</button>
+<button id="themeToggle" onclick="toggleTheme()">🌗</button>
+<div id="promo-box">
+  🕒 <b>Акція!</b> Замов зараз — отримаєш подарунок! <span id="timer"></span>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+AOS.init();
+window.onscroll = function() {
+  document.getElementById("scrollTopBtn").style.display =
+    document.documentElement.scrollTop > 200 ? "block" : "none";
+};
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function toggleTheme() {
+  document.body.classList.toggle('light-mode');
+}
+function startCountdown(duration, display) {
+  var timer = duration, minutes, seconds;
+  setInterval(function () {
+    minutes = parseInt(timer / 60, 10);
+    seconds = parseInt(timer % 60, 10);
+    display.textContent = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+    if (--timer < 0) timer = duration;
+  }, 1000);
+}
+window.onload = function () {
+  var fiveMinutes = 60 * 5;
+  var display = document.querySelector('#timer');
+  if(display) startCountdown(fiveMinutes, display);
+};
+</script>
+
+
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js')
+  .then(function(reg) { console.log('Service Worker Registered!', reg); })
+  .catch(function(err) { console.log('Service Worker registration failed: ', err); });
+}
 </script>
 
 </body>
