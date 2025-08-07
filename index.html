@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kozak Family — Ваш магазин</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html { height: 100%; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; color: #fff; overflow-x: hidden; }
+    body {
+      background: url('https://www.meme-arsenal.com/memes/45505cef14b0ad89dd7f17932f1050ae.jpg') no-repeat center center fixed;
+      background-size: cover; position: relative;
+    }
+    body::before { content: ""; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0,0,0,0.65); z-index: -1; }
+    header {
+      background: rgba(0,0,0,0.5); padding: 20px 40px;
+      display: flex; justify-content: space-between; align-items: center;
+      position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.7);
+    }
+    .logo { font-size: 28px; font-weight: 700; letter-spacing: 2px; color: #ffdb58; user-select: none; }
+    nav ul { list-style: none; display: flex; gap: 25px; }
+    nav ul li a { color: #fff; text-decoration: none; font-weight: 600; font-size: 16px; transition: color 0.3s ease; user-select: none; }
+    nav ul li a:hover { color: #ffdb58; }
+    .banner {
+      height: 450px; display: flex; flex-direction: column; justify-content: center;
+      padding-left: 60px; max-width: 1200px; margin: 40px auto; text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+    }
+    .banner h1 { font-size: 52px; font-weight: 900; margin-bottom: 20px; letter-spacing: 3px; }
+    .banner p { font-size: 20px; font-weight: 500; max-width: 500px; margin-bottom: 30px; }
+    .btn-primary {
+      display: inline-block; background-color: #ffdb58; color: #222;
+      padding: 14px 32px; font-weight: 700; font-size: 18px;
+      border-radius: 8px; border: none; cursor: pointer;
+      box-shadow: 0 4px 12px rgba(255,219,88,0.7); user-select: none;
+      transition: background-color 0.3s ease; text-transform: uppercase; letter-spacing: 1.5px; max-width: max-content;
+    }
+    .btn-primary:hover { background-color: #f5c700; }
+    .container { max-width: 1200px; margin: 0 auto 80px auto; padding: 0 20px; }
+    #categories ul { max-width: 600px; margin: 0 auto; font-size: 18px; line-height: 1.7; list-style: none; padding-left: 0; columns: 2; gap: 25px; cursor: pointer; }
+    #categories ul li { margin-bottom: 10px; user-select: none; cursor: pointer; transition: color 0.3s ease; }
+    #categories ul li:hover { color: #ffdb58; }
+    #reset-filter {
+      background:#ffdb58; color:#222; border:none; padding:10px 25px;
+      border-radius:8px; font-weight:700; cursor:pointer; transition: background-color 0.3s ease; user-select: none;
+    }
+    #reset-filter:hover { background: #f5c700; }
+    @media (max-width: 768px) {
+      .banner { padding-left: 30px; height: 320px; text-align: center; }
+      .banner h1 { font-size: 32px; letter-spacing: 1.5px; }
+      .banner p { font-size: 16px; max-width: 90%; margin-left: auto; margin-right: auto; }
+      nav ul { gap: 15px; }
+      #categories ul { columns: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Kozak Family</div>
+  <nav>
+    <ul>
+      <li><a href="#about">О нас</a></li>
+      <li><a href="#categories">Категории</a></li>
+      <li><a href="#shop">Магазин</a></li>
+      <li><a href="#products">Рекомендуемые</a></li>
+      <li><a href="#contact">Контакты</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="banner">
+  <h1>Добро пожаловать в Kozak Family</h1>
+  <p>Лучшие товары с заботой о вашем здоровье и стиле</p>
+  <button class="btn-primary" onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'})">Перейти к категориям</button>
+</section>
+
+<section id="about" class="container" style="margin-bottom: 60px; color: #fff;">
+  <h2 style="text-align:center; font-weight:700; font-size:32px; color:#ffdb58; margin-bottom: 25px;">О нас</h2>
+  <p style="max-width: 800px; margin: 0 auto; font-size: 18px; line-height: 1.6; text-align: center;">
+    Наша опытная команда уже более 10 лет занимается изучением и реализацией медицинского канабиса.
+    Мы являемся партнёрами ведущих европейских компаний и лабораторий.
+    Сотрудничая с нами вы получаете продукты премиум-класса для личного использования и вашего бизнеса.
+  </p>
+</section>
+
+<section id="categories" class="container" style="margin-bottom: 60px; color: #fff;">
+  <h2 style="text-align:center; font-weight:700; font-size:32px; color:#ffdb58; margin-bottom: 25px;">КАТЕГОРІЇ ТОВАРІВ</h2>
+  <ul id="category-list">
+    <li data-category="510 аккумуляторы">510 акумулятори</li>
+    <li data-category="510 картридж">510 картридж</li>
+    <li data-category="CBD Канабідіол">CBD (КБД) Канабідіол</li>
+    <li data-category="CBD CRUD Kozak Family">CBD CRUD Kozak Family(Нафта)</li>
+    <li data-category="CBD для тіла">CBD для тіла</li>
+    <li data-category="CBD желейки">CBD желейки</li>
+    <li data-category="CBD Напої">CBD Напої</li>
+    <li data-category="CBD Олія">CBD Олія</li>
+    <li data-category="CBD олія Kozak Family PREMIUM">CBD олія Kozak Family PREMIUM</li>
+    <li data-category="CBD олія для тварин">CBD олія для тварин</li>
+    <li data-category="CBD Цукерки">CBD Цукерки</li>
+    <li data-category="CBD+CBG Олія">CBD+CBG Олія</li>
+    <li data-category="CBN">CBN</li>
+    <li data-category="CRD">CRD</li>
+    <li data-category="H4CBD">H4CBD</li>
+    <li data-category="Взуття із конопель">Взуття із конопель</li>
+    <li data-category="Гроубоксы">Гроубоксы</li>
+    <li data-category="Конопляний текстиль">Конопляний текстиль</li>
+    <li data-category="Косметика з конопель">Косметика з конопель</li>
+    <li data-category="Мікродозінг">Мікродозінг</li>
+    <li data-category="Одяг з конопель">Одяг з конопель</li>
+    <li data-category="семена Datch Passion">семена Datch Passion</li>
+    <li data-category="семена Fast Buds">семена Fast Buds</li>
+    <li data-category="Семена seed stockers">Семена seed stockers</li>
+  </ul>
+  <div style="text-align:center; margin-top: 20px;">
+    <button id="reset-filter">Показать все товары</button>
+  </div>
+</section>
+<section id="shop" class="container" style="margin-bottom: 80px; color:#fff;">
+  <h2 style="text-align:center; font-weight:700; font-size:32px; color:#ffdb58; margin-bottom: 25px;">Магазин</h2>
+
+  <!-- Контейнер товаров -->
+  <div id="shop-products" style="display:grid; grid-template-columns: repeat(auto-fill,minmax(250px,1fr)); gap:25px; margin-bottom:30px;">
+    <!-- Карточки товаров будут добавляться динамически через JS -->
+  </div>
+
+  <!-- Пагинация -->
+  <div id="pagination" style="text-align:center; margin-top:30px;">
+    <!-- Кнопки страниц будут добавляться JS -->
+  </div>
+</section>
+
+<script>
+  // ==== Список товаров (название, цена, изображение, категория) ====
+  const allProducts = [
+    {name:"CBD Масло 5%", price: 899, img:"https://kozak-family.com.ua/wp-content/uploads/2022/04/cbd-5-600x600.jpg", category:"CBD Олія"},
+    {name:"CBD Масло 10%", price: 1299, img:"https://kozak-family.com.ua/wp-content/uploads/2022/04/cbd-10-600x600.jpg", category:"CBD Олія"},
+    {name:"CBD Олія для тварин", price: 999, img:"https://kozak-family.com.ua/wp-content/uploads/2023/02/cbd-pet-600x600.jpg", category:"CBD олія для тварин"},
+    {name:"CBD Крем для тіла", price: 699, img:"https://kozak-family.com.ua/wp-content/uploads/2023/02/cbd-cream-600x600.jpg", category:"CBD для тіла"},
+    {name:"CBD желейки", price: 599, img:"https://kozak-family.com.ua/wp-content/uploads/2023/02/cbd-gummies-600x600.jpg", category:"CBD желейки"},
+    {name:"CBD Напій", price: 129, img:"https://kozak-family.com.ua/wp-content/uploads/2023/02/cbd-drink-600x600.jpg", category:"CBD Напої"},
+    {name:"H4CBD Vape", price: 1399, img:"https://kozak-family.com.ua/wp-content/uploads/2023/02/h4cbd-vape-600x600.jpg", category:"H4CBD"},
+    {name:"Взуття з конопель", price: 1699, img:"https://kozak-family.com.ua/wp-content/uploads/2023/02/hemp-shoes-600x600.jpg", category:"Взуття із конопель"},
+    {name:"Конопляний текстиль", price: 499, img:"https://kozak-family.com.ua/wp-content/uploads/2023/02/hemp-textile-600x600.jpg", category:"Конопляний текстиль"},
+    {name:"Косметика з конопель", price: 799, img:"https://kozak-family.com.ua/wp-content/uploads/2023/02/hemp-cosmetics-600x600.jpg", category:"Косметика з конопель"},
+    {name:"Мікродозінг", price: 299, img:"https://kozak-family.com.ua/wp-content/uploads/2023/02/microdosing-600x600.jpg", category:"Мікродозінг"},
+    {name:"Футболка Kozak", price: 499, img:"https://kozak-family.com.ua/wp-content/uploads/2022/05/t-shirt-600x600.jpg", category:"Одяг з конопель"},
+    {name:"Натуральная косметика", price: 799, img:"https://kozak-family.com.ua/wp-content/uploads/2022/05/cosmetic-600x600.jpg", category:"Косметика з конопель"},
+    {name:"CBD Олія Kozak Family PREMIUM", price: 1999, img:"https://kozak-family.com.ua/wp-content/uploads/2022/05/cbd-premium-600x600.jpg", category:"CBD олія Kozak Family PREMIUM"},
+    {name:"CBD+CBG Олія", price: 1599, img:"https://kozak-family.com.ua/wp-content/uploads/2022/05/cbd-cbg-600x600.jpg", category:"CBD+CBG Олія"},
+    {name:"CBN Олія", price: 1799, img:"https://kozak-family.com.ua/wp-content/uploads/2022/05/cbn-oil-600x600.jpg", category:"CBN"},
+    {name:"CRD Олія", price: 1699, img:"https://kozak-family.com.ua/wp-content/uploads/2022/05/crd-oil-600x600.jpg", category:"CRD"},
+    {name:"Гроубокс", price: 4599, img:"https://kozak-family.com.ua/wp-content/uploads/2022/05/growbox-600x600.jpg", category:"Гроубоксы"},
+    {name:"Семена Dutch Passion", price: 799, img:"https://kozak-family.com.ua/wp-content/uploads/2022/05/dutch-passion-600x600.jpg", category:"семена Datch Passion"},
+    {name:"Семена Fast Buds", price: 699, img:"https://kozak-family.com.ua/wp-content/uploads/2022/05/fast-buds-600x600.jpg", category:"семена Fast Buds"},
+    {name:"Семена Seed Stockers", price: 599, img:"https://kozak-family.com.ua/wp-content/uploads/2022/05/seed-stockers-600x600.jpg", category:"Семена seed stockers"}
+  ];
+
+  const productsPerPage = 8;
+  let currentPage = 1;
+
+  function displayProducts(page=1) {
+    const start = (page-1)*productsPerPage;
+    const end = start + productsPerPage;
+    const productsToShow = allProducts.slice(start, end);
+
+    const container = document.getElementById('shop-products');
+    container.innerHTML = '';
+
+    productsToShow.forEach(product => {
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      card.dataset.category = product.category;
+      card.style.cssText = "background:rgba(255,255,255,0.1);border-radius:12px;padding:20px;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,0.4);";
+      card.innerHTML = `
+        <img src="${product.img}" alt="${product.name}" style="width:100%;border-radius:8px; margin-bottom:15px;">
+        <h3 style="margin-bottom:10px;font-size:18px;">${product.name}</h3>
+        <p style="margin-bottom:10px;font-size:16px;font-weight:700;">${product.price} грн</p>
+        <button class="btn-primary" style="padding:10px 20px;font-size:16px;" onclick="addToCart('${product.name}')">В корзину</button>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  function setupPagination() {
+    const pageCount = Math.ceil(allProducts.length / productsPerPage);
+    const pagination = document.getElementById('pagination');
+    pagination.innerHTML = '';
+
+    for(let i=1;i<=pageCount;i++){
+      const btn = document.createElement('button');
+      btn.textContent = i;
+      btn.style.cssText = "margin:5px; padding:8px 15px; border:none; border-radius:5px; background:#ffdb58; cursor:pointer; font-weight:700;";
+      btn.addEventListener('click', ()=> {
+        currentPage = i;
+        displayProducts(currentPage);
+        highlightPage(i);
+      });
+      pagination.appendChild(btn);
+    }
+    highlightPage(1);
+  }
+
+  function highlightPage(pageNum){
+    Array.from(document.getElementById('pagination').children).forEach((btn, index)=>{
+      btn.style.background = (index+1 === pageNum) ? '#f5c700' : '#ffdb58';
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', ()=>{
+    displayProducts();
+    setupPagination();
+  });
+</script>
+<section id="contact" class="container" style="margin-bottom: 80px;">
+  <h2 style="text-align:center; font-weight:700; font-size:32px; color:#ffdb58; margin-bottom: 25px;">Контакты</h2>
+  <form onsubmit="submitForm(event)" style="max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; color:#fff;">
+    <input type="text" name="name" placeholder="Ваше имя" required style="padding: 12px; border-radius: 8px; border: none; font-size: 16px;" />
+    <input type="email" name="email" placeholder="Ваш email" required style="padding: 12px; border-radius: 8px; border: none; font-size: 16px;" />
+    <textarea name="message" placeholder="Сообщение" rows="5" required style="padding: 12px; border-radius: 8px; border: none; font-size: 16px;"></textarea>
+    <button type="submit" class="btn-primary" style="align-self: center; width: 140px;">Отправить</button>
+  </form>
+</section>
+
+<button id="cart-button" onclick="toggleCart()">🛒 <span id="cart-count">0</span></button>
+
+<div id="cart" style="display:none; position:fixed; top:80px; right:20px; background:#222; padding:20px; border-radius:12px; box-shadow:0 2px 10px rgba(0,0,0,0.6); width:300px; z-index:1001;">
+  <h3 style="margin-bottom:15px;">Корзина</h3>
+  <ul id="cart-items" style="list-style:none; margin-bottom:20px;"></ul>
+  <div id="cart-total" style="margin-bottom:15px; font-weight:700;">Итого: 0 грн</div>
+  <button id="checkout-btn" onclick="checkout()" class="btn-primary" style="width:100%; margin-bottom:10px;">Оформить заказ</button>
+  <button id="close-cart-btn" onclick="toggleCart()" class="btn-primary" style="width:100%; background:#ccc; color:#000;">Закрыть</button>
+</div>
+
+<footer style="text-align:center; padding:20px; background:rgba(0,0,0,0.5); margin-top:60px;">
+  © 2025 Kozak Family. Все права защищены.
+</footer>
+
+<script>
+  const cartKey = 'kozakFamilyCart';
+
+  function getCart() {
+    return JSON.parse(localStorage.getItem(cartKey)) || {};
+  }
+
+  function saveCart(cart) {
+    localStorage.setItem(cartKey, JSON.stringify(cart));
+  }
+
+  function updateCartUI() {
+    const cart = getCart();
+    const cartItemsElem = document.getElementById('cart-items');
+    const cartCountElem = document.getElementById('cart-count');
+    const cartTotalElem = document.getElementById('cart-total');
+
+    cartItemsElem.innerHTML = '';
+    let totalCount = 0;
+    let totalPrice = 0;
+
+    if (Object.keys(cart).length === 0) {
+      cartItemsElem.innerHTML = '<li>Корзина пуста</li>';
+      cartCountElem.textContent = '0';
+      cartTotalElem.textContent = 'Итого: 0 грн';
+      return;
+    }
+
+    for (const [productName, item] of Object.entries(cart)) {
+      totalCount += item.quantity;
+      totalPrice += item.price * item.quantity;
+
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <span>${productName} x${item.quantity}</span>
+        <span>${item.price * item.quantity} грн</span>
+        <button onclick="removeFromCart('${productName}')" style="margin-left:10px; padding:3px 8px;">Удалить</button>
+      `;
+      cartItemsElem.appendChild(li);
+    }
+
+    cartCountElem.textContent = totalCount;
+    cartTotalElem.textContent = \`Итого: \${totalPrice} грн\`;
+  }
+
+  function addToCart(productName) {
+    const product = allProducts.find(p => p.name === productName);
+    const cart = getCart();
+
+    if (cart[productName]) {
+      cart[productName].quantity += 1;
+    } else {
+      cart[productName] = {
+        quantity: 1,
+        price: product.price
+      };
+    }
+
+    saveCart(cart);
+    updateCartUI();
+    alert(\`Товар "\${productName}" добавлен в корзину.\`);
+  }
+
+  function removeFromCart(productName) {
+    const cart = getCart();
+    if (cart[productName]) {
+      delete cart[productName];
+      saveCart(cart);
+      updateCartUI();
+    }
+  }
+
+  function toggleCart() {
+    const cartElem = document.getElementById('cart');
+    cartElem.style.display = cartElem.style.display === 'block' ? 'none' : 'block';
+  }
+
+  function checkout() {
+    const cart = getCart();
+    if (Object.keys(cart).length === 0) {
+      alert('Ваша корзина пуста.');
+      return;
+    }
+
+    let summary = 'Ваш заказ:\\n';
+    let total = 0;
+    for (const [name, item] of Object.entries(cart)) {
+      summary += \`\${name} x\${item.quantity} - \${item.price * item.quantity} грн\\n\`;
+      total += item.price * item.quantity;
+    }
+    summary += \`Итого: \${total} грн\\n\\nСпасибо за заказ! Мы свяжемся с вами для подтверждения.\`;
+
+    alert(summary);
+    localStorage.removeItem(cartKey);
+    updateCartUI();
+    toggleCart();
+  }
+
+  function submitForm(event) {
+    event.preventDefault();
+    alert('Спасибо за ваше сообщение! Мы свяжемся с вами в ближайшее время.');
+    event.target.reset();
+  }
+
+  // Фильтрация по категориям
+  document.addEventListener('DOMContentLoaded', () => {
+    updateCartUI();
+
+    const categoryList = document.getElementById('category-list');
+    const resetFilterBtn = document.getElementById('reset-filter');
+
+    categoryList.addEventListener('click', (event) => {
+      const target = event.target;
+      if (target.tagName.toLowerCase() === 'li' && target.dataset.category) {
+        const selectedCategory = target.dataset.category;
+        const shopCards = document.querySelectorAll('#shop-products .product-card');
+
+        shopCards.forEach(card => {
+          if (card.dataset.category === selectedCategory) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+    });
+
+    resetFilterBtn.addEventListener('click', () => {
+      document.querySelectorAll('#shop-products .product-card').forEach(card => {
+        card.style.display = '';
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
